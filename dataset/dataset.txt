@@ -1,1 +1,7 @@
 https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis
+
+├───dataset                    
+│       dataset.txt            link de Kaggle y estructura
+│       departments.csv
+│       order_products__prior.csv
+│       products.csv

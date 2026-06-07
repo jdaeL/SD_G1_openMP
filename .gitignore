@@ -1,0 +1,14 @@
+# para binarios compilados
+dockerizacion/reorder_analysis
+dockerizacion/*.out
+dockerizacion/*.exe
+*.o
+
+# datasets masivos (CSV)
+dataset/*.csv
+
+# archivos temporales
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
