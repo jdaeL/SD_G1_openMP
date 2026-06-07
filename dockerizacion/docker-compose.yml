@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  openmp-node:
+    build: .
+    container_name: openmp_instacart
+    volumes:
+      - ../:/app
+    tty: true
