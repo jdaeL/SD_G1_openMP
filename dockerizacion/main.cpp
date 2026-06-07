@@ -353,9 +353,9 @@ void imprimirBenchmark(double t_secuencial,
 
 int main() {
     // ── Rutas de archivos ──────────────────────────────────────
-    const std::string RUTA_DEPTOS    = "departments.csv";
-    const std::string RUTA_PRODUCTOS = "products.csv";
-    const std::string RUTA_ORDENES   = "order_products__prior.csv";
+    const std::string RUTA_DEPTOS    = "../dataset/departments.csv";
+    const std::string RUTA_PRODUCTOS = "../dataset/products.csv";
+    const std::string RUTA_ORDENES   = "../dataset/order_products__prior.csv";
 
     std::cout << "============================================\n";
     std::cout << "  Análisis de Reorder Rate - Instacart\n";
