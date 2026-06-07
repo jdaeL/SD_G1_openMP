@@ -406,14 +406,14 @@ int main() {
     std::vector<std::pair<int, double>> benchmark_paralelo;
 
     for (int num_hilos : configuraciones_hilos) {
-        // Verificamos que el sistema soporte esa cantidad de hilos
-        int max_hilos = omp_get_max_threads();
-        int hilos_usar = std::min(num_hilos, max_hilos);
-
-        std::cout << "  Ejecutando con " << hilos_usar << " hilo(s)...";
+        // sin restricción de omp_get_max_threads()
+        // forzamos directamente el uso de num_hilos
+        
+        std::cout << "  Ejecutando con " << num_hilos << " hilo(s)...";
 
         double t_par_inicio = omp_get_wtime();
-        MapaMetricas resultado_par = procesarParalelo(ordenes, productos, hilos_usar);
+        // pasamos num_hilos directamente a la función
+        MapaMetricas resultado_par = procesarParalelo(ordenes, productos, num_hilos);
         double t_par_fin = omp_get_wtime();
         double t_paralelo = t_par_fin - t_par_inicio;
 
@@ -422,7 +422,7 @@ int main() {
                   << " (Speedup: " << std::fixed << std::setprecision(2)
                   << (t_secuencial / t_paralelo) << "x)\n";
 
-        benchmark_paralelo.emplace_back(hilos_usar, t_paralelo);
+        benchmark_paralelo.emplace_back(num_hilos, t_paralelo);
 
         // Verificación de consistencia: comparamos totales globales
         long long total_seq = 0, total_par = 0;
@@ -431,7 +431,7 @@ int main() {
 
         if (total_seq != total_par) {
             std::cerr << "  [ADVERTENCIA] Resultados inconsistentes con "
-                      << hilos_usar << " hilos! "
+                      << num_hilos << " hilos! "
                       << "seq=" << total_seq << " par=" << total_par << "\n";
         }
     }
